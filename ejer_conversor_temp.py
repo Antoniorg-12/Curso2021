@@ -1,6 +1,7 @@
 import tkinter as tk
 import tkinter.ttk as ttk
 from ttkthemes import ThemedStyle
+from tkinter import messagebox as mb
 
 class Aplicacion:
     def __init__(self):
@@ -81,6 +82,13 @@ class Aplicacion:
         self.ventana.mainloop()
 
     def convertir(self):
+
+        try:
+            _ = float(self.dato.get())
+        except:
+            mb.showerror("Error convirtiendo","Por favor, introduzca un número válido")
+            return
+
         if self.seleccion.get()==1:
             self.convertir_desde_kelvin()
         elif self.seleccion.get()==2:
