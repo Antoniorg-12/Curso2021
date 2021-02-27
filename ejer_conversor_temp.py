@@ -1,71 +1,80 @@
 import tkinter as tk
-
+import tkinter.ttk as ttk
+from ttkthemes import ThemedStyle
 
 class Aplicacion:
     def __init__(self):
         self.ventana=tk.Tk()
         self.ventana.title("Conversor de Temperatura")
 
+        self.labelframe1=ttk.LabelFrame(self.ventana, text="Datos de entrada:")        
+        self.labelframe1.grid(column=0, row=0, padx=5, pady=10)        
+        
         #cantidad
-        self.label=tk.Label(self.ventana,text="Cantidad:")
-        self.label.grid(column=0, row=0)
+        self.label=ttk.Label(self.labelframe1,text="Cantidad:")
+        self.label.grid(column=1, row=0)
 
         #introducir
         self.dato=tk.StringVar(value="0.0")
-        self.entry_cantidad=tk.Entry(self.ventana, width=10, textvariable=self.dato)
+        self.entry_cantidad=tk.Entry(self.labelframe1, width=10, textvariable=self.dato)
         self.entry_cantidad.grid(column=1, row=0)
 
         #radiobutton
         self.seleccion=tk.IntVar()
         self.seleccion.set(3)
 
-        self.radio1=tk.Radiobutton(self.ventana,text="Kelvin", variable=self.seleccion, value=1)
+        self.radio1=tk.Radiobutton(self.labelframe1,text="Kelvin", variable=self.seleccion, value=1)
         self.radio1.grid(column=0, row=1)
-        self.radio2=tk.Radiobutton(self.ventana,text="Celsius", variable=self.seleccion, value=2)
+        self.radio2=tk.Radiobutton(self.labelframe1,text="Celsius", variable=self.seleccion, value=2)
         self.radio2.grid(column=1, row=1)
-        self.radio3=tk.Radiobutton(self.ventana,text="Farenheit", variable=self.seleccion, value=3)
+        self.radio3=tk.Radiobutton(self.labelframe1,text="Farenheit", variable=self.seleccion, value=3)
         self.radio3.grid(column=2, row=1)
 
+        #LABEL FRAME 2
+        self.labelframe2=ttk.LabelFrame(self.ventana, text="Datos Conversión:")        
+        self.labelframe2.grid(column=0, row=1, padx=5, pady=10)        
 
         #button
-        self.boton=tk.Button(self.ventana, text="Convertir a:", command=self.convertir)
+        self.boton=tk.Button(self.labelframe2, text="Convertir a:", command=self.convertir)
         self.boton.grid(column=1,row=2)
 
 
         #checkbutton
         self.seleccion1=tk.IntVar()
-        self.check1=tk.Checkbutton(self.ventana,text="Kelvin", variable=self.seleccion1)
+        self.check1=tk.Checkbutton(self.labelframe2,text="Kelvin", variable=self.seleccion1)
         self.check1.grid(column=0, row=3)
 
         self.seleccion2=tk.IntVar()
-        self.check2=tk.Checkbutton(self.ventana,text="Celsius", variable=self.seleccion2)
+        self.check2=tk.Checkbutton(self.labelframe2,text="Celsius", variable=self.seleccion2)
         self.check2.grid(column=1, row=3)
 
         self.seleccion3=tk.IntVar()
-        self.check3=tk.Checkbutton(self.ventana,text="Farenheit", variable=self.seleccion3)
+        self.check3=tk.Checkbutton(self.labelframe2,text="Farenheit", variable=self.seleccion3)
         self.check3.grid(column=2, row=3)
 
-        #label final
+        #LABEL 3
+        self.labelframe3=ttk.LabelFrame(self.ventana, text="Resultados:")        
+        self.labelframe3.grid(column=0, row=2, padx=5, pady=10, sticky="WE")        
 
         #kelvins
-        self.labelKelvin=tk.Label(text="Kelvin:")
+        self.labelKelvin=tk.Label(self.labelframe3,text="Kelvin:")
         self.labelKelvin.grid(column=0, row=4)
 
-        self.labelResulKelvin=tk.Label()
+        self.labelResulKelvin=tk.Label(self.labelframe3,)
         self.labelResulKelvin.grid(column=1, row=4)
 
         #celsius
-        self.labelCelsius=tk.Label(text="Celsius:")
+        self.labelCelsius=tk.Label(self.labelframe3,text="Celsius:")
         self.labelCelsius.grid(column=0, row=5)
 
-        self.labelResulCelsius=tk.Label()
+        self.labelResulCelsius=tk.Label(self.labelframe3,)
         self.labelResulCelsius.grid(column=1, row=5)
 
         #farenheit
-        self.labelFahrenheit=tk.Label(text="Fahrenheit:")
+        self.labelFahrenheit=tk.Label(self.labelframe3,text="Fahrenheit:")
         self.labelFahrenheit.grid(column=0, row=6)
 
-        self.labelResulFahrenheit=tk.Label()
+        self.labelResulFahrenheit=tk.Label(self.labelframe3,)
         self.labelResulFahrenheit.grid(column=1, row=6)
 
         #llamar a la ventana
